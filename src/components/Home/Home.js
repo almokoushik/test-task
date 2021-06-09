@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
+import CardDetail from '../CardDetail/CardDetail';
+
 import Card from '../Cards/Card';
 import MenuBar from '../MenuBar/MenuBar';
-import SingleCard from '../SIngleCard/SingleCard';
+import SIdeBar from '../SIdeBar/SIdeBar';
 
 const Home = () => {
+    const [id, setId] = useContext(UserContext)
+    console.log(id)
+    
     return (
-        <div className="row d-flex justify-content-center align-items-center">
-            <div className="col-md-3 text-white" style={{ backgroundColor:"#201B20"}}>
-                <h1>This is First Col</h1>
+        <div className="row d-flex justify-content-center">
+            {/* style={{ backgroundColor: "#201B20" }} */}
+            <div className="col-md-3 my-5 py-3" >
+                <SIdeBar></SIdeBar>
             </div>
             <div className="col-md-9">
                 <MenuBar></MenuBar>
-                <h1>This is ANother col</h1>
-                <Card></Card>
-                {/* <SingleCard></SingleCard> */}
+                {
+                    !id ? <Card></Card>:<CardDetail key={id}></CardDetail>
+                }
+
             </div>
             
         </div>
